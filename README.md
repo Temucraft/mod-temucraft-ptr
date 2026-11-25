@@ -58,6 +58,24 @@ Temucraft.PTR.Templates.Enable = 1 # only with the mod-ptr-template fork
 - Nothing blocks the world thread for long: the polls are async queries; the dump is written and read on a helper
   thread; only the dump load itself (the same step as `.pdump load`) runs on the world thread.
 
+### Settings (`conf/mod-temucraft-ptr.conf.dist`)
+
+| Setting | Default | What |
+|---|---|---|
+| `Temucraft.PTR.Enable` | 0 | this worldserver is the PTR (loads copies, quartermaster, login message; also turns mod-temucraft-issues on) |
+| `Temucraft.PTR.CopyWriter` | 0 | this worldserver is a Live realm that writes copies and keeps `mod_temucraft_ptr_live_chars` |
+| `Temucraft.PTR.DumpFolder` | "" | the shared dump folder; empty = copies and template requests off |
+| `Temucraft.PTR.PollInterval` | 10 | seconds between looks at the request table (at least 2) |
+| `Temucraft.PTR.RealmId` | 0 | on Live: the PTR realm requests made there go to (0 = any PTR) |
+| `Temucraft.PTR.MaxOpenRequests` | 3 | open requests per account |
+| `Temucraft.PTR.SaveDelay` | 3 | seconds Live waits after saving an online character before the dump |
+| `Temucraft.PTR.KeepDays` | 30 | finished and failed requests are removed after this many days (0 = never) |
+| `Temucraft.PTR.DeleteDumps` | 1 | the PTR removes a dump file once it loaded it |
+| `Temucraft.PTR.LoginMessage` | 1 | "You are on the PTR" at login |
+| `Temucraft.PTR.Quartermaster.Enable` | 1 | place the PTR Quartermasters |
+| `Temucraft.PTR.Templates.Enable` | 0 | level-80 templates (needs the mod-ptr-template fork) |
+| `Temucraft.PTR.Templates.ApplyCommand` | `.template apply {name} {index}` | the command run as the player to apply a template |
+
 ### SQL
 
 Applied by the worldserver's module updater at start (each file deletes its own rows first, so they can run again):
