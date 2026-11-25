@@ -1,0 +1,110 @@
+[worldserver]
+
+########################################
+# mod-temucraft-ptr
+########################################
+#
+# Everything is off until its key is on. A Live realm sets Temucraft.PTR.CopyWriter = 1, the PTR sets
+# Temucraft.PTR.Enable = 1, and both point Temucraft.PTR.DumpFolder at the same folder. Both must use the same
+# acore_auth (LoginDatabaseInfo).
+#
+#    Temucraft.PTR.Enable
+#        Description: This worldserver is the PTR: it loads copies from Live, shows the login message, places the
+#                     PTR Quartermasters and applies template requests.
+#        Default:     0
+
+Temucraft.PTR.Enable = 0
+
+#
+#    Temucraft.PTR.CopyWriter
+#        Description: This worldserver is a Live realm: it lists its characters in mod_temucraft_ptr_live_chars
+#                     and writes the copies players ask for.
+#        Default:     0
+
+Temucraft.PTR.CopyWriter = 0
+
+#
+#    Temucraft.PTR.DumpFolder
+#        Description: Folder the copies (PlayerDump files, ptr-copy-<id>.dump) go through. Live writes, the PTR
+#                     reads, so both worldservers need it (same machine, or a network share both can reach).
+#                     Empty turns the copies off.
+#        Example:     "/home/acore/ptr-dumps" or "D:\Temucraft\ptr-dumps"
+#        Default:     ""
+
+Temucraft.PTR.DumpFolder = ""
+
+#
+#    Temucraft.PTR.PollInterval
+#        Description: Seconds between two looks at the request table (at least 2).
+#        Default:     10
+
+Temucraft.PTR.PollInterval = 10
+
+#
+#    Temucraft.PTR.RealmId
+#        Description: On Live: realmlist id of the PTR that copies asked for on Live go to. 0 = any PTR (fine
+#                     with a single PTR). On the PTR this key is not used (it takes its own realm id).
+#        Default:     0
+
+Temucraft.PTR.RealmId = 0
+
+#
+#    Temucraft.PTR.MaxOpenRequests
+#        Description: Requests one account can have under way at once.
+#        Default:     3
+
+Temucraft.PTR.MaxOpenRequests = 3
+
+#
+#    Temucraft.PTR.SaveDelay
+#        Description: Live: seconds to wait after saving an online character before its copy is written.
+#        Default:     3
+
+Temucraft.PTR.SaveDelay = 3
+
+#
+#    Temucraft.PTR.DeleteDumps
+#        Description: The PTR removes a copy file once it has loaded it.
+#        Default:     1
+
+Temucraft.PTR.DeleteDumps = 1
+
+#
+#    Temucraft.PTR.KeepDays
+#        Description: Finished and failed requests older than this are removed at start. 0 keeps them.
+#        Default:     30
+
+Temucraft.PTR.KeepDays = 30
+
+#
+#    Temucraft.PTR.LoginMessage
+#        Description: PTR: tell every player at login that progress there never goes back to Live
+#                     (module_string mod-temucraft-ptr 1).
+#        Default:     1
+
+Temucraft.PTR.LoginMessage = 1
+
+#
+#    Temucraft.PTR.Quartermaster.Enable
+#        Description: PTR: place the PTR Quartermasters (free supplies, templates, copies) by the Stormwind and
+#                     Orgrimmar banks.
+#        Default:     1
+
+Temucraft.PTR.Quartermaster.Enable = 1
+
+#
+#    Temucraft.PTR.Templates.Enable
+#        Description: PTR: level-80 templates in the quartermaster's menu and 'template' requests. Needs the
+#                     Temucraft fork of mod-ptr-template on the PTR.
+#        Default:     0
+
+Temucraft.PTR.Templates.Enable = 0
+
+#
+#    Temucraft.PTR.Templates.ApplyCommand
+#        Description: The chat command run for the player to apply a template; {name} is the character's name,
+#                     {index} the template ID. mod-ptr-template keeps its apply code inside its own .cpp, so the
+#                     module runs its command, with the player's own permissions.
+#        Default:     ".template apply {name} {index}"
+
+Temucraft.PTR.Templates.ApplyCommand = ".template apply {name} {index}"
